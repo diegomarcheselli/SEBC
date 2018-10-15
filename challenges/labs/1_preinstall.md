@@ -88,7 +88,7 @@ CHANGED: partition=1 start=2048 old: size=16775168 end=16777216 new: size=629084
 ```
 and reboot the VMs.
 ```
-ansible -i hosts all  --become -c paramiko -m shell -a 'yum install -y epel-release'
+ansible -i hosts all  --become -c paramiko -m shell -a 'reboot'
 ```
 Run df -h again:
 ```
@@ -103,7 +103,7 @@ ansible -i hosts all  --become -c paramiko -m shell -a 'lsblk'
 ec2-18-196-113-149.eu-central-1.compute.amazonaws.com | SUCCESS | rc=0 >>
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  30G  0 disk
-└─xvda1 202:1    0  8G  0 part /
+└─xvda1 202:1    0  30G  0 part /
 ```
 
 # 4. Disable transparent hugepage support
