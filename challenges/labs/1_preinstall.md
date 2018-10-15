@@ -107,7 +107,7 @@ xvda    202:0    0  30G  0 disk
 ```
 
 # 4. Disable transparent hugepage support
-By default transparent hugepage support was enabled
+By default transparent hugepage support was enabled:
 ```
 ansible -i hosts all --become  -c paramiko -m shell -a 'cat /sys/kernel/mm/redhat_transparent_hugepage/defrag'
 ec2-35-158-75-43.eu-central-1.compute.amazonaws.com | SUCCESS | rc=0 >>
@@ -118,7 +118,7 @@ ansible -i hosts all --become -c paramiko -m shell -a 'cat /sys/kernel/mm/redhat
 ec2-52-59-231-3.eu-central-1.compute.amazonaws.com | SUCCESS | rc=0 >>
 [always] madvise never
 ```
-To diasble:
+To diasble (interactively):
 ```
 ansible -i hosts all  --become -c paramiko -m shell -a 'echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag'
 ec2-18-196-113-149.eu-central-1.compute.amazonaws.com | SUCCESS | rc=0 >>
@@ -137,6 +137,13 @@ always madvise [never]
 ansible -i hosts all --become -c paramiko -m shell -a 'cat /sys/kernel/mm/redhat_transparent_hugepage/enabled'
 ec2-52-59-231-3.eu-central-1.compute.amazonaws.com | SUCCESS | rc=0 >>
 always madvise [never]
+```
+To disable on reboot modify /etc/rc.d/rc.local file:
+```
+ansible -i hosts all --become -c paramiko -m shell -a 'echo "echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag" >> /etc/rc.d/rc.local'
+```
+```
+ansible -i hosts all --become -c paramiko -m shell -a 'echo "echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled" >> /etc/rc.d/rc.local'
 ```
 # 5. List your network interface configuration
 ```
