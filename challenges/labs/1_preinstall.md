@@ -24,6 +24,11 @@ ec2-18-196-113-149.eu-central-1.compute.amazonaws.com | SUCCESS | rc=0 >>
 1
 ```
 
+REMARK: solution provided my Cloudera documentation is not persistent over reboot. To make the change persistent line "vm.swappiness = 1" needs to be added to /etc/sysctl.conf file.
+```
+ansible -i hosts all -c paramiko --become -m shell -a 'echo "vm.swappiness = 1" >> /etc/sysctl.conf'
+```
+
 # 2. Mount attributes
 ```
 ansible -i hosts all --become -c paramiko -m shell -a 'mount -l'
