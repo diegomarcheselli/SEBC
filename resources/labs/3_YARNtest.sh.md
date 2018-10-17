@@ -1,4 +1,4 @@
-```
+```bash
 #!/bin/sh
 # Confirm the path values given below correspond to your installation
 
@@ -9,13 +9,13 @@ HADOOP=/opt/cloudera/parcels/CDH/bin
 echo Testing loop started on `date`
 
 # Mapper containers
-for i in 8    
+for i in 1 2 4 8
 do
    # Reducer containers
-   for j in 1
+   for j in 1 2 4 8
    do                 
       # Container memory
-      for k in 512 1024
+      for k in 1024 2048
       do                         
          # Set mapper JVM heap
          MAP_MB=`echo "($k*0.8)/1" | bc`
@@ -28,13 +28,14 @@ do
          echo "mappers = $i"
          echo "reducers = $j"
          echo "container memory = $k"
-
+         echo "Starting teragen"
         time ${HADOOP}/hadoop jar ${MR}/hadoop-examples.jar teragen \
                      -Dmapreduce.job.maps=$i \
                      -Dmapreduce.map.memory.mb=$k \
                      -Dmapreduce.map.java.opts.max.heap=$MAP_MB \
                      51200000 /results/tg-10GB-${i}-${j}-${k} 1>tera_${i}_${j}_${k}.out 2>tera_${i}_${j}_${k}.err                       
 
+       echo "Starting terasort"
        time ${HADOOP}/hadoop jar $MR/hadoop-examples.jar terasort \
                      -Dmapreduce.job.maps=$i \
                      -Dmapreduce.job.reduces=$j \
