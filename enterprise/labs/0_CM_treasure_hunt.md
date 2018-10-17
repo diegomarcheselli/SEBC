@@ -1,6 +1,5 @@
 # What is ubertask optimization?
-
- Ubertask optimization runs "sufficiently small" jobs sequentially within a single JVM. The size (how "small" the job has to be) is defined by the mapreduce.job.ubertask.maxmaps, mapreduce.job.ubertask.maxreduces, and mapreduce.job.ubertask.maxbytes settings.
+Ubertask optimization runs "sufficiently small" jobs sequentially within a single JVM. The size (how "small" the job has to be) is defined by the mapreduce.job.ubertask.maxmaps, mapreduce.job.ubertask.maxreduces, and mapreduce.job.ubertask.maxbytes settings.
 
 # Where in CM is the Kerberos Security Realm value displayed?
 Administration -> Settings -> Kerberos -> Kerberos Security Realm (default_realm)
