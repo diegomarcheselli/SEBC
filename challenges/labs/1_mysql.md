@@ -1,15 +1,15 @@
 # The hostname of your DB node
-
+```
 ec2-52-56-245-5.eu-west-2.compute.amazonaws.com
 ip-172-31-22-209.eu-west-2.compute.internal
-
+```
 
 # The command screenshot to display the DB version
-
+```
 ansible -i hosts db --user centos --private-key /Users/n.schmidt/.ssh/aws.pem -c paramiko --become -m shell -a 'mysql --version'
 ec2-52-56-245-5.eu-west-2.compute.amazonaws.com | SUCCESS | rc=0 >>
 mysql  Ver 14.14 Distrib 5.5.61, for Linux (x86_64) using readline 5.1
-
+```
 <img src="mysql.png">
 
 # The command and output for listing databases
